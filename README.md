@@ -1,4 +1,6 @@
-# omarchy-screensaver
+# fk-omarchy-screensaver
+
+> Forked from omacom/omarchy-screensaver (MIT). See `SIGMAOS_FORK.md`.
 
 The [Omarchy](https://omarchy.org) screensaver: a native Wayland overlay on every display that animates your branding text with [ttfx](https://github.com/omacom/ttfx) effects. A key press, click, scroll or mouse movement dismisses it.
 
