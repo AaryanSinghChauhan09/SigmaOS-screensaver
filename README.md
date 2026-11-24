@@ -1,23 +1,23 @@
-# fk-omarchy-screensaver
+# SigmaOS screensaver
 
 > Forked from AaryanSinghChauhan09/SigmaOS-screensaver (MIT). See `SIGMAOS_FORK.md`.
 
-The [SigmaOS](https://omarchy.org) screensaver: a native Wayland overlay on every display that animates your branding text with [ttfx](https://github.com/SigmaOS/ttfx) effects. A key press, click, scroll or mouse movement dismisses it.
+The [SigmaOS](https://sigmaos.org) screensaver: a native Wayland overlay on every display that animates your branding text with [ttfx](https://github.com/SigmaOS/ttfx) effects. A key press, click, scroll or mouse movement dismisses it.
 
 ## In SigmaOS
 
-SigmaOS installs it as the `omarchy-screensaver` package, at `/usr/lib/omarchy-screensaver/omarchy-screensaver`, and starts it through `omarchy-launch-screensaver`, both when the session goes idle and from _System > Screensaver_. It:
+SigmaOS installs it as the `sigmaos-screensaver` package, at `/usr/lib/sigmaos-screensaver/sigmaos-screensaver`, and starts it through `sigmaos-launch-screensaver`, both when the session goes idle and from _System > Screensaver_. It:
 
 - draws the text in `~/.config/sigmaos/branding/screensaver.txt`, falling back to the bundled `assets/screensaver.txt`
 - stays off while the `screensaver-off` toggle is set (`omarchy toggle screensaver`), or while the session is locked
-- maps one layer surface per display under the namespace `org.omarchy.screensaver`, which is how SigmaOS's tools find it
+- maps one layer surface per display under the namespace `org.sigmaos.screensaver`, which is how SigmaOS's tools find it
 - runs one instance at a time, and on Hyprland hides the cursor while it is up and restores it when it exits
 - appears and disappears at once, exiting on input, `SIGTERM`, `SIGINT`, `SIGHUP` or `SIGQUIT`
 
 ## Options
 
 ```bash
-omarchy-launch-screensaver [force] [options]
+sigmaos-launch-screensaver [force] [options]
 ```
 
 - `force`: start even when the toggle is set or the session is locked
@@ -34,13 +34,13 @@ omarchy-launch-screensaver [force] [options]
 Building needs Rust, `pkg-config` and libxkbcommon. Running it needs a compositor with `wlr-layer-shell`, such as Hyprland, and a monospace font: JetBrains Mono Nerd Font, or the closest monospace font `fc-match` finds.
 
 ```bash
-make                                  # build/rust/release/omarchy-launch-screensaver
+make                                  # build/rust/release/sigmaos-launch-screensaver
 make check                            # the test suite; needs no compositor
 make benchmark                        # render benchmark, checked byte-for-byte against a full redraw
-make install PREFIX="$HOME/.local"    # as $PREFIX/bin/omarchy-launch-screensaver, outside SigmaOS's package
+make install PREFIX="$HOME/.local"    # as $PREFIX/bin/sigmaos-launch-screensaver, outside SigmaOS's package
 ```
 
-To release, bump the version in `Cargo.toml`, run `cargo update -p omarchy-launch-screensaver` so `Cargo.lock` agrees, commit both, tag `v<version>`, and publish a GitHub release for the tag that is neither a draft nor a prerelease. omarchy-pkgs picks up new releases and builds the package from source. [LEARNINGS.md](LEARNINGS.md) explains how rendering and presentation work.
+To release, bump the version in `Cargo.toml`, run `cargo update -p sigmaos-launch-screensaver` so `Cargo.lock` agrees, commit both, tag `v<version>`, and publish a GitHub release for the tag that is neither a draft nor a prerelease. sigmaos-pkgs picks up new releases and builds the package from source. [LEARNINGS.md](LEARNINGS.md) explains how rendering and presentation work.
 
 ## Credits
 
