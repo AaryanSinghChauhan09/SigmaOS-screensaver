@@ -1,16 +1,16 @@
 # fk-omarchy-screensaver
 
-> Forked from omacom/omarchy-screensaver (MIT). See `SIGMAOS_FORK.md`.
+> Forked from AaryanSinghChauhan09/SigmaOS-screensaver (MIT). See `SIGMAOS_FORK.md`.
 
-The [Omarchy](https://omarchy.org) screensaver: a native Wayland overlay on every display that animates your branding text with [ttfx](https://github.com/omacom/ttfx) effects. A key press, click, scroll or mouse movement dismisses it.
+The [SigmaOS](https://omarchy.org) screensaver: a native Wayland overlay on every display that animates your branding text with [ttfx](https://github.com/SigmaOS/ttfx) effects. A key press, click, scroll or mouse movement dismisses it.
 
-## In Omarchy
+## In SigmaOS
 
-Omarchy installs it as the `omarchy-screensaver` package, at `/usr/lib/omarchy-screensaver/omarchy-screensaver`, and starts it through `omarchy-launch-screensaver`, both when the session goes idle and from _System > Screensaver_. It:
+SigmaOS installs it as the `omarchy-screensaver` package, at `/usr/lib/omarchy-screensaver/omarchy-screensaver`, and starts it through `omarchy-launch-screensaver`, both when the session goes idle and from _System > Screensaver_. It:
 
 - draws the text in `~/.config/omarchy/branding/screensaver.txt`, falling back to the bundled `assets/screensaver.txt`
 - stays off while the `screensaver-off` toggle is set (`omarchy toggle screensaver`), or while the session is locked
-- maps one layer surface per display under the namespace `org.omarchy.screensaver`, which is how Omarchy's tools find it
+- maps one layer surface per display under the namespace `org.omarchy.screensaver`, which is how SigmaOS's tools find it
 - runs one instance at a time, and on Hyprland hides the cursor while it is up and restores it when it exits
 - appears and disappears at once, exiting on input, `SIGTERM`, `SIGINT`, `SIGHUP` or `SIGQUIT`
 
@@ -37,14 +37,14 @@ Building needs Rust, `pkg-config` and libxkbcommon. Running it needs a composito
 make                                  # build/rust/release/omarchy-launch-screensaver
 make check                            # the test suite; needs no compositor
 make benchmark                        # render benchmark, checked byte-for-byte against a full redraw
-make install PREFIX="$HOME/.local"    # as $PREFIX/bin/omarchy-launch-screensaver, outside Omarchy's package
+make install PREFIX="$HOME/.local"    # as $PREFIX/bin/omarchy-launch-screensaver, outside SigmaOS's package
 ```
 
 To release, bump the version in `Cargo.toml`, run `cargo update -p omarchy-launch-screensaver` so `Cargo.lock` agrees, commit both, tag `v<version>`, and publish a GitHub release for the tag that is neither a draft nor a prerelease. omarchy-pkgs picks up new releases and builds the package from source. [LEARNINGS.md](LEARNINGS.md) explains how rendering and presentation work.
 
 ## Credits
 
-Written by [Tobi Lütke](https://github.com/tobi). Built on [ttfx](https://github.com/omacom/ttfx), [Smithay Client Toolkit](https://github.com/Smithay/client-toolkit) and [fontdue](https://github.com/mooman219/fontdue).
+Written by [Tobi Lütke](https://github.com/tobi). Built on [ttfx](https://github.com/SigmaOS/ttfx), [Smithay Client Toolkit](https://github.com/Smithay/client-toolkit) and [fontdue](https://github.com/mooman219/fontdue).
 
 MIT; see [LICENSE](LICENSE).
 ## Documentation
