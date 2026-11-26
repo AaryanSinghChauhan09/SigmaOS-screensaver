@@ -375,7 +375,9 @@ fn present_surface(
         let (buffer, canvas) = pool
             .create_buffer(width, height, stride, wl_shm::Format::Argb8888)
             .context("creating layer buffer")?;
-        let damage = raster_surface(rasterizer, surface, canvas, width, height, cells, cols, rows)?;
+        let damage = raster_surface(
+            rasterizer, surface, canvas, width, height, cells, cols, rows,
+        )?;
         buffer
             .attach_to(surface.layer.wl_surface())
             .context("attaching layer buffer")?;
@@ -385,7 +387,9 @@ fn present_surface(
         let Some(canvas) = pool.canvas(surface.buffer.as_ref().expect("buffer exists")) else {
             return Ok(false);
         };
-        let damage = raster_surface(rasterizer, surface, canvas, width, height, cells, cols, rows)?;
+        let damage = raster_surface(
+            rasterizer, surface, canvas, width, height, cells, cols, rows,
+        )?;
         let Some(damage) = damage else {
             surface.dirty = false;
             return Ok(false);
@@ -447,8 +451,8 @@ fn raster_surface(
     cols: i32,
     rows: i32,
 ) -> Result<Option<Damage>> {
-    let can_update_incrementally = surface.rendered_grid == (cols, rows)
-        && surface.rendered_cells.len() == cells.len();
+    let can_update_incrementally =
+        surface.rendered_grid == (cols, rows) && surface.rendered_cells.len() == cells.len();
     let damage = if can_update_incrementally {
         rasterizer.render_delta(
             pixels,
@@ -461,15 +465,7 @@ fn raster_surface(
             surface.scale,
         )?
     } else {
-        rasterizer.render(
-            pixels,
-            width,
-            height,
-            cells,
-            cols,
-            rows,
-            surface.scale,
-        )?;
+        rasterizer.render(pixels, width, height, cells, cols, rows, surface.scale)?;
         Some(Damage {
             x: 0,
             y: 0,

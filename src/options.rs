@@ -186,12 +186,9 @@ mod tests {
 
     #[test]
     fn parses_force_and_effect() {
-        let options = parse_from([
-            "force".into(),
-            "--effect=print".into(),
-        ])
-        .unwrap()
-        .expect("unexpected help");
+        let options = parse_from(["force".into(), "--effect=print".into()])
+            .unwrap()
+            .expect("unexpected help");
         assert!(options.force);
         assert_eq!(options.effect.as_deref(), Some("print"));
     }
