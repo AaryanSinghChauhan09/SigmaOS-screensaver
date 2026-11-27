@@ -1,7 +1,7 @@
 use std::{env, process::ExitCode};
 
 use anyhow::{Context, Result};
-use omarchy_launch_screensaver::{engine::Animation, launch, options, options::Options, wayland};
+use sigmaos_launch_screensaver::{engine::Animation, launch, options, options::Options, wayland};
 
 fn main() -> ExitCode {
     let parsed = match options::parse() {
